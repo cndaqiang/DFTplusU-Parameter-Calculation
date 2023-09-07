@@ -1,0 +1,65 @@
+ &control
+    calculation='scf'
+    restart_mode='from_scratch',
+    prefix='nio',
+    pseudo_dir = './'
+    outdir='./',
+ /
+ &system
+    ibrav=0, 
+    celldm(1)= 7.9,
+    nat= 16,
+    nbnd=120 !24*8=192
+    ntyp=4,
+    nspin = 2,  
+    starting_magnetization(1)=0.5,
+    starting_magnetization(2)=-0.5,
+    ecutwfc=80.0,
+    ecutrho=320.0,
+    occupations ='smearing',
+    smearing ='gauss',
+    degauss = 0.01, 
+    lda_plus_u = .true.,
+    U_projection_type = 'atomic',
+    Hubbard_U(1) = 1.d-10
+    Hubbard_alpha(1) = 0.1
+    Hubbard_U(2) = 1.d-10
+    Hubbard_U(3) = 1.d-10
+    Hubbard_U(4) = 1.d-10
+ /
+ &electrons
+    diagonalization='david',
+    mixing_beta = 0.3,
+    conv_thr = 1.0d-8,
+    startingwfc = 'file',
+    startingpot = 'file',
+    diago_thr_init = 1.47E-12
+ /
+ATOMIC_SPECIES
+ Ni1  1.0   Ni_ONCV_PBE_fr.upf !Ni.pbe-nd-rrkjus.UPF
+ Ni2  1.0   Ni_ONCV_PBE_fr.upf !Ni.pbe-nd-rrkjus.UPF
+ O1   1.0   O_ONCV_PBE_fr.upf !O.pbe-rrkjus.UPF
+ O2   1.0   O_ONCV_PBE_fr.upf !O.pbe-rrkjus.UPF
+ATOMIC_POSITIONS {crystal}
+Ni1  0.25d0 -0.25d0 -0.25d0
+Ni1  0.75d0  0.25d0 -0.25d0
+Ni1  0.75d0 -0.25d0  0.25d0
+Ni1  0.25d0  0.25d0  0.25d0
+Ni2  0.75d0 -0.25d0 -0.25d0
+Ni2  0.25d0  0.25d0 -0.25d0
+Ni2  0.25d0 -0.25d0  0.25d0
+Ni2  0.75d0 0.25d0 0.25d0
+O1   0.d0  0.d0  0.d0
+O2   0.5d0  0.d0  0.d0
+O2   0.d0  0.d0  0.5d0
+O2   0.d0  0.5d0  0.d0
+O2   0.5d0  0.5d0  0.d0
+O2   0.5d0  0.d0  0.5d0
+O2   0.d0  0.5d0  0.5d0
+O2   0.5d0  0.5d0  0.5d0
+K_POINTS {automatic}
+2 2 2 0 0 0
+CELL_PARAMETERS
+1.0 1.0 0.0
+1.0 0.0 1.0
+0.0 1.0 1.0
