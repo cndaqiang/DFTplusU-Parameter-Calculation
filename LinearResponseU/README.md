@@ -34,24 +34,24 @@ input  PBEU_0  PBEU_0.1  PBEU_0_nscf0.1  VO
 (python37) [SSLAB2 cndaqiang@login001 test_NiO]$grep 'Tr' PBEU_0/result | grep 'atom    1' | tail -1
 atom    1   Tr[ns(na)] (up, down, total) =   4.95331  3.64051  8.59382
 (python37) [SSLAB2 cndaqiang@login001 test_NiO]$grep 'Tr' PBEU_0.1/result | grep 'atom    1' | tail -1
-atom    1   Tr[ns(na)] (up, down, total) =   4.95344  3.63131  8.58475
+atom    1   Tr[ns(na)] (up, down, total) =   4.95351  3.63086  8.58437
 (python37) [SSLAB2 cndaqiang@login001 test_NiO]$grep 'Tr' PBEU_0_nscf0.1/result | grep 'atom    1' | tail -1
 atom    1   Tr[ns(na)] (up, down, total) =   4.95331  3.64051  8.59382
 (python37) [SSLAB2 cndaqiang@login001 test_NiO]$grep 'Tr' PBEU_0_nscf0.1/udm.result | grep 'atom    1' | tail -1
-atom    1   Tr[ns(na)] (up, down, total) =   4.95156  3.62356  8.57512
-(python37) [SSLAB2 cndaqiang@login001 test_NiO]$cal.py '0.1/(8.57512-8.59382)-0.1/(8.58475-8.59382)'
+atom    1   Tr[ns(na)] (up, down, total) =   4.95153  3.62178  8.57330
+(python37) [SSLAB2 cndaqiang@login001 test_NiO]$cal.py '0.1/(8.57330-8.59382)-0.1/(8.58437-8.59382)'
 expr       	 =  value
-0.1/(8.57512-8.59382)-0.1/(8.58475-8.59382) 	 =  5.67776474125821
+0.1/(8.57330-8.59382)-0.1/(8.58437-8.59382) 	 =  5.708716235032681
 ```
 
-这里我用的模守恒赝势, 得到NiO中Ni的U值为5.68eV.和VASP的[5.58eV](https://www.vasp.at/wiki/index.php/Calculate_U_for_LSDA%2BU)接近,反而和参考的QE教程(PAW赝势)的[~4.0eV](https://www.slideshare.net/BurakHimmetoglu/exercises-with-dftu)有差别.
-仅对Ni+U(5.68eV)得到gap=2.87eV
+这里我用的模守恒赝势, 得到NiO中Ni的U值为5.7eV.和VASP的[5.58eV](https://www.vasp.at/wiki/index.php/Calculate_U_for_LSDA%2BU)接近,反而和参考的QE教程(PAW赝势)的[~4.0eV](https://www.slideshare.net/BurakHimmetoglu/exercises-with-dftu)有差别.
+仅对Ni+U(5.68eV)得到gap=2.88eV
 
 ### 优化一下
 如果读入scf+U0的结果进行计算scf+U0.1,则第一个scf步输出的就是nscf的计算结果,我们只要设置第一步对角化的精度足够高就可以.这样第一步的结果输出的电荷占据就当作nscf的结果.最终计算结果是scf+U0.1的结果,如下
 ```
-(python37) [SSLAB2 cndaqiang@login001 test_NiO]$grep 'Tr' PBEU_0.1_diago_thr_init/result | grep 'atom    1' | tail -1
-atom    1   Tr[ns(na)] (up, down, total) =   4.95344  3.63130  8.58474
-(python37) [SSLAB2 cndaqiang@login001 test_NiO]$grep 'Tr' PBEU_0.1_diago_thr_init/result | grep 'atom    1' | head -2 | tail -1
-atom    1   Tr[ns(na)] (up, down, total) =   4.95155  3.62357  8.57512
+(python37) [SSLAB2 chendq@login001 test_NiO]$grep 'Tr' PBEU_0.1_diago_thr_init/result | grep 'atom    1' | tail -1
+atom    1   Tr[ns(na)] (up, down, total) =   4.95350  3.63090  8.58439
+(python37) [SSLAB2 chendq@login001 test_NiO]$grep 'Tr' PBEU_0.1_diago_thr_init/result | grep 'atom    1' | head -2 | tail -1
+atom    1   Tr[ns(na)] (up, down, total) =   4.95153  3.62178  8.57330
 ```
