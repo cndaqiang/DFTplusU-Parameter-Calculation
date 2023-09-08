@@ -1,8 +1,8 @@
  &control
     calculation='scf'
     restart_mode='from_scratch',
-    prefix='nio',
-    pseudo_dir = './'
+    prefix='pwscf',
+    pseudo_dir = '../input/'
     outdir='./',
  /
  &system
@@ -13,7 +13,8 @@
     ntyp=4,
     nspin = 2,  
     starting_magnetization(1)=0.5,
-    starting_magnetization(2)=-0.5,
+    starting_magnetization(2)=0.5,
+    starting_magnetization(3)=-0.5,
     ecutwfc=80.0,
     ecutrho=320.0,
     occupations ='smearing',
@@ -38,25 +39,27 @@
 ATOMIC_SPECIES
  Ni1  1.0   Ni_ONCV_PBE_fr.upf !Ni.pbe-nd-rrkjus.UPF
  Ni2  1.0   Ni_ONCV_PBE_fr.upf !Ni.pbe-nd-rrkjus.UPF
+ Ni3  1.0   Ni_ONCV_PBE_fr.upf !Ni.pbe-nd-rrkjus.UPF
  O1   1.0   O_ONCV_PBE_fr.upf !O.pbe-rrkjus.UPF
- O2   1.0   O_ONCV_PBE_fr.upf !O.pbe-rrkjus.UPF
+
 ATOMIC_POSITIONS {crystal}
-Ni1  0.25d0 -0.25d0 -0.25d0
-Ni1  0.75d0  0.25d0 -0.25d0
-Ni1  0.75d0 -0.25d0  0.25d0
-Ni1  0.25d0  0.25d0  0.25d0
-Ni2  0.75d0 -0.25d0 -0.25d0
-Ni2  0.25d0  0.25d0 -0.25d0
-Ni2  0.25d0 -0.25d0  0.25d0
-Ni2  0.75d0 0.25d0 0.25d0
-O1   0.d0  0.d0  0.d0
-O2   0.5d0  0.d0  0.d0
-O2   0.d0  0.d0  0.5d0
-O2   0.d0  0.5d0  0.d0
-O2   0.5d0  0.5d0  0.d0
-O2   0.5d0  0.d0  0.5d0
-O2   0.d0  0.5d0  0.5d0
-O2   0.5d0  0.5d0  0.5d0
+Ni1  0.d0  0.d0  0.d0
+Ni2  0.5d0 0.5d0 0.d0
+Ni2  0.5d0 0.d0  0.5d0
+Ni2  0.d0  0.5d0 0.5d0
+Ni3  0.5d0 0.d0  0.d0
+Ni3  0.d0  0.5d0 0.d0
+Ni3  0.d0  0.d0  0.5d0
+Ni3  0.5d0 0.5d0 0.5d0
+O1   -0.25d0  0.25d0  0.25d0
+O1    0.25d0  0.25d0  0.25d0
+O1   -0.25d0  0.25d0  0.75d0
+O1   -0.25d0  0.75d0  0.25d0
+O1    0.25d0  0.75d0  0.25d0
+O1    0.25d0  0.25d0  0.75d0
+O1   -0.25d0  0.75d0  0.75d0
+O1    0.25d0  0.75d0  0.75d0
+
 K_POINTS {automatic}
 2 2 2 0 0 0
 CELL_PARAMETERS

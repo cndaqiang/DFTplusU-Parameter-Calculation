@@ -22,10 +22,10 @@
     degauss = 0.01, 
     lda_plus_u = .true.,
     U_projection_type = 'atomic',
-    Hubbard_U(1) = 1.d-10
+    Hubbard_U(1) = 5.7 
     Hubbard_alpha(1) = 0.0
-    Hubbard_U(2) = 1.d-10
-    Hubbard_U(3) = 1.d-10
+    Hubbard_U(2) = 5.7
+    Hubbard_U(3) = 5.7
     Hubbard_U(4) = 1.d-10
  /
  &electrons
